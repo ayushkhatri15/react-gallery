@@ -14,7 +14,7 @@ const Images = () => {
 	const [photos, setphotos] = useState([]);
 	const [loader, setLoader] = useState(true);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [query, setQuery] = useState("airplane");
+	const [query, setQuery] = useState("travel");
 	const [noPhotos, setnoPhotos] = useState(false);
 
 	const url = `https://api.pexels.com/v1/search?query=${query}&page=${currentPage}&per_page=25`;
@@ -105,7 +105,7 @@ const Images = () => {
 			<div className='btns flex justify-center left-[50rem] z-10'>
 				<button
 					className={`px-8 py-3 border border-gray-500 text-gray-900 font-normal m-3 ${
-						currentPage === 1 ? "border border-gray-200  text-gray-300" : ""
+						currentPage === 1 ? "border border-gray-300  text-gray-400" : ""
 					}`}
 					onClick={handlePrevPage}
 					disabled={currentPage === 1}
@@ -135,13 +135,14 @@ const Images = () => {
 				))}
 			</div>
 
-			<div className='photos flex flex-wrap justify-center items-center gap-5 mt-10 px-10 mb-10'>
+			<div className='photos flex w-full flex-wrap justify-center items-center gap-5 mt-10 px-10 mb-10'>
 				{loader ? (
 					<p className='text-black'>Loading....</p>
 				) : noPhotos ? (
 					<p className='text-black'>No photos found</p>
 				) : (
 					photos.map((item, id) => {
+						console.log(item)
 						return (
 							<div className='img' key={id}>
 								<img src={item.src.tiny} alt={item.photographer} />
